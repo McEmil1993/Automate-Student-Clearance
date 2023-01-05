@@ -22,8 +22,6 @@
             </a>
           </li>
 
-          <!-- Clearance -->
-          @if(App\Http\Controllers\AccessRightsController::access_roole(Auth::user()->id,'1')->sig == '1')
 
           <li class="nav-item has-treeview" id="cl_">
             <a href="{{ route('clearance') }}" id="clearance" class="nav-link clck"  > 
@@ -31,8 +29,6 @@
               <p> Clearance</p>
             </a>
           </li>
-          @endif
-          @if(App\Http\Controllers\AccessRightsController::access_roole(Auth::user()->id,'2')->sig == '1')
           <!-- Designee -->
           <li class="nav-item has-treeview">
             <a href="{{ route('assignee') }}" id="assignee" class="nav-link clck">
@@ -40,8 +36,6 @@
               <p> Assignee</p>
             </a>
           </li>
-          @endif
-          @if(App\Http\Controllers\AccessRightsController::access_roole(Auth::user()->id,'3')->sig == '1')
           <!-- Students -->
           <li class="nav-item has-treeview">
             <a  href="{{ route('student') }}" class="nav-link clck" id="students" >
@@ -49,8 +43,6 @@
               <p> Students</p>
             </a>
           </li>
-          @endif
-          @if(App\Http\Controllers\AccessRightsController::access_roole(Auth::user()->id,'4')->sig == '1')
           <!-- Manage Others -->
           <li class="nav-item has-treeview" id="manage">
             <a href="#" id="manage_others" class="nav-link">
@@ -105,8 +97,7 @@
               </li>
             </ul>
           </li>
-          @endif
-          @if(App\Http\Controllers\AccessRightsController::access_roole(Auth::user()->id,'5')->sig == '1')
+  
           <!-- Access Rights -->
           <li class="nav-item has-treeview">
             <a href="{{ route('Manage-Access')}}" id="access_right" id="accessmanage" class="nav-link clck">
@@ -114,7 +105,6 @@
               <p> Access Rights</p>
             </a>
           </li>
-          @endif
           <!-- User Profile -->
            <li class="nav-item has-treeview">
             <a href="{{ route('My Profile') }}" id="my_profile" class="nav-link clck">

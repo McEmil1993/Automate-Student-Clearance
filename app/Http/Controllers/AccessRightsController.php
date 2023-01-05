@@ -268,11 +268,11 @@ class AccessRightsController extends Controller
         ->select('*','roles_.id AS r_id')
         ->first();
 
-        if($permis_status->sig == '0'){
+        // if($permis_status->sig == '0'){
 
-           include '404.php';
+        //    include '404.php';
 
-        }else{
+        // }else{
 
             $access = Access_right::all();
             $permiss = DB::table('permissions_')->get();
@@ -280,7 +280,7 @@ class AccessRightsController extends Controller
             $permis_status = DB::table('permissions_')->where('status','1')->get();
 
             return view('pages.accessmanage.index',compact('access','permiss','permis_status'));
-        }
+        // }
 
 
 
