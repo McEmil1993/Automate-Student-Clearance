@@ -45,7 +45,7 @@ class LoginController extends Controller
     public function login2(Request $request) {
         
         $request->validate([
-            'email' => 'required|string|email',
+            'email' => 'required|string',
             'password' => 'required|string',
         ]);
   
@@ -79,7 +79,7 @@ class LoginController extends Controller
                 return response()->json("falsepass");
             }
         } else {
-                return response()->json("falseuser");
+                return response()->json($user);
             // return redirect()->back()->with(['err_email' => "* Input email doesn't exist!"]);
         }
          

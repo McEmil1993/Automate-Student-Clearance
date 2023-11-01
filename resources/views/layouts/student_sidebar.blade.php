@@ -28,14 +28,12 @@
               <p> Message</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <!-- <li class="nav-item has-treeview">
             <a href="{{ route('clearance') }}" id="clearance" class="nav-link clck"  > 
               <i class="nav-icon fas fa-copy"></i>
               <p> Profile</p>
             </a>
-          </li>
-           
-          
+          </li> -->
         </ul>
       </nav><!-- /.sidebar-menu -->
     </div><!-- /.sidebar -->

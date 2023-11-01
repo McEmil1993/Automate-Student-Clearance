@@ -30,7 +30,7 @@
 				<div class="col-md-6 col-lg-4"  style="background-color: rgba(0, 0, 0,0.20); backdrop-filter: blur(9px);border-radius: 10px;">
 					<div class="login-wrap p-0" >
 		      	<h3 class="mb-4 text-center"><strong >TMC<br>Online Clearance</strong></h3>
-		      	<form method="POST" id="loginForm" action="{{ route('Login.login2') }}">
+		      	<form method="POST" id="loginForm" action="{{ route('login2') }}">
                 @csrf
 		      		<div class="form-group">
                       <input id="email" type="email" class="form-control @if (session('err_email')) is-invalid @endif" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email (sample@gmail.com)">
@@ -49,15 +49,7 @@
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
 	            </div>
-	            <div class="form-group d-md-flex">
-	            	<div class="w-50">
-		            	<label class="checkbox-wrap checkbox-primary">{{ __('Remember Me') }}
-							<input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} >
-							<span class="checkmark"></span>
-						</label>
-					</div>
-								
-	            </div>
+	            
 
                 
 	          </form>
@@ -119,36 +111,37 @@
 				url      : $(this).attr('action'),
 				data     : $(this).serialize(),
 				success  : function(data) {
-					if(data == "falsepass"){
+					console.log(data);
+					// if(data == "falsepass"){
 						
-						$('#password-field').addClass('is-invalid');
-						$('#email').removeClass('is-invalid');
-						$('#password-field').val("");
-						$('.try').attr('hidden','hidden');
-						err_pass = "true";
-						$('#text').html('Wrong pass');
-						end_load();
+					// 	$('#password-field').addClass('is-invalid');
+					// 	$('#email').removeClass('is-invalid');
+					// 	$('#password-field').val("");
+					// 	$('.try').attr('hidden','hidden');
+					// 	err_pass = "true";
+					// 	$('#text').html('Wrong pass');
+					// 	end_load();
 
-					}else if(data == "falseuser"){
-						$('#password-field').removeClass('is-invalid');
-						$('.try').removeAttr('style');
-						$('#email').addClass('is-invalid');
-						err_pass = "";
-						end_load();
-					}else{
+					// }else if(data == "falseuser"){
+					// 	$('#password-field').removeClass('is-invalid');
+					// 	$('.try').removeAttr('style');
+					// 	$('#email').addClass('is-invalid');
+					// 	err_pass = "";
+					// 	end_load();
+					// }else{
 
-						toastr.success('Success user login');
-						if (data.result == 3) {
-							setTimeout(()=>{
-								location.href = "/Student-Dash"
-							},1500);
-						}else{
-							setTimeout(()=>{
-								location.reload();
-							},1500);
-						}
+					// 	toastr.success('Success user login');
+					// 	if (data.result == 3) {
+					// 		setTimeout(()=>{
+					// 			location.href = "/Student-Dash"
+					// 		},1500);
+					// 	}else{
+					// 		setTimeout(()=>{
+					// 			location.reload();
+					// 		},1500);
+					// 	}
 						
-					}
+					// }
 				}
 			});
 

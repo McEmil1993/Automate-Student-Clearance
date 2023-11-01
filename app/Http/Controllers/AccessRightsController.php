@@ -11,7 +11,7 @@ use App\Models\Clearance_log;
 use App\Models\Assignee;
 use App\Models\User;
 use App\Models\Department;
-use App\Models\User_info;
+use App\Models\User_Info;
 use App\Models\Position;
 use App\Models\Prefix;
 use App\Models\Suffix;
@@ -259,7 +259,7 @@ class AccessRightsController extends Controller
 
        
        
-        $user = User_info::where('user_id',Auth::user()->id)->first();
+        $user = User_Info::where('user_id',Auth::user()->id)->first();
 
         $permis_status = DB::table('roles_')
         ->join('permissions_','permissions_.id','=','roles_.permission_id')
@@ -300,7 +300,7 @@ class AccessRightsController extends Controller
 
     public function access_roole($id,$name)
     {
-        $user = User_info::where('user_id',$id)->first();
+        $user = User_Info::where('user_id',$id)->first();
 
         $permis_status = DB::table('roles_')
         ->join('permissions_','permissions_.id','=','roles_.permission_id')

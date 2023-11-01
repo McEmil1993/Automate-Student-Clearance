@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\User_info;
+use App\Models\User_Info;
 use App\Models\Prefix;
 use App\Models\YearLevel;
 use App\Models\Course;
@@ -125,20 +125,20 @@ class StudentController extends Controller
 
         $userId = $getUser->id;
 
-        $User_info = new User_info;
-        $User_info->user_id = $userId;
-        $User_info->prefix = "";
+        $User_Info = new User_Info;
+        $User_Info->user_id = $userId;
+        $User_Info->prefix = "";
        
-        $User_info->firstname = $firstname;
-        $User_info->middlename = $middlename;
-        $User_info->lastname = $lastname;
-        $User_info->suffix = $suffix;
-        $User_info->contact = $contact;
-        $User_info->address = $address;
+        $User_Info->firstname = $firstname;
+        $User_Info->middlename = $middlename;
+        $User_Info->lastname = $lastname;
+        $User_Info->suffix = $suffix;
+        $User_Info->contact = $contact;
+        $User_Info->address = $address;
         
-        $User_info->role = "3";
+        $User_Info->role = "3";
 
-        $User_info->save();
+        $User_Info->save();
 
 
         $student = new Student;
@@ -186,7 +186,7 @@ class StudentController extends Controller
         
         $user = User::find($id);
 
-        $User_info = User_info::where('user_id',$id)->first();
+        $User_Info = User_Info::where('user_id',$id)->first();
 
         $student = Student::where('user_id',$id)->first();
      
@@ -194,12 +194,12 @@ class StudentController extends Controller
         return response()->json([
             "fullname"=>$user->name,
             "email"=>$user->email,
-            "firstname"=>$User_info->firstname,
-            "middlename"=>$User_info->middlename,
-            "lastname"=>$User_info->lastname,
-            "suffix"=>$User_info->suffix,
-            "contact"=>$User_info->contact,
-            "address"=>$User_info->address,
+            "firstname"=>$User_Info->firstname,
+            "middlename"=>$User_Info->middlename,
+            "lastname"=>$User_Info->lastname,
+            "suffix"=>$User_Info->suffix,
+            "contact"=>$User_Info->contact,
+            "address"=>$User_Info->address,
             "status"=>$student->status,
             "course"=>$student->course_id,
             "year_level"=>$student->year_level_id,
@@ -274,19 +274,19 @@ class StudentController extends Controller
         $user->type = "3";
         $user->update();
 
-        $User_info = User_info::where('user_id',$id)->first();
-        $User_info->prefix = "";
+        $User_Info = User_Info::where('user_id',$id)->first();
+        $User_Info->prefix = "";
        
-        $User_info->firstname = $firstname;
-        $User_info->middlename = $middlename;
-        $User_info->lastname = $lastname;
-        $User_info->suffix = $suffix;
-        $User_info->contact = $contact;
-        $User_info->address = $address;
+        $User_Info->firstname = $firstname;
+        $User_Info->middlename = $middlename;
+        $User_Info->lastname = $lastname;
+        $User_Info->suffix = $suffix;
+        $User_Info->contact = $contact;
+        $User_Info->address = $address;
         
-        $User_info->role = "3";
+        $User_Info->role = "3";
 
-        $User_info->update();
+        $User_Info->update();
 
 
         $student =  Student::where('user_id',$id)->first();
@@ -331,9 +331,9 @@ class StudentController extends Controller
 
         $user->delete();
 
-        $User_info = User_info::where('user_id',$id)->first();
+        $User_Info = User_Info::where('user_id',$id)->first();
 
-        $User_info->delete();
+        $User_Info->delete();
 
         $assignee = Student::where('user_id',$id)->first();
 
