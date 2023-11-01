@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Assignee;
 use App\Models\User;
 use App\Models\Department;
-use App\Models\User_info;
+use App\Models\User_Info;
 use App\Models\Position;
 use App\Models\Prefix;
 use App\Models\Suffix;
@@ -46,7 +46,7 @@ class AssigneeController extends Controller
             ->select('users.id AS uid','users.profile_image AS pr','users.name AS fullname','user__infos.contact AS no','user__infos.address AS addrss','positions.position AS pos','assignees.status AS st','user__infos.suffix AS s')
             ->get();
        
-        $stu = User_info::where('user_id',Auth::user()->id);
+        // $stu = User_Info::where('user_id',Auth::user()->id);
 
         if(AccessRightsController::access_roole(Auth::user()->id,'2')->sig == '0' ){
             include '404.php';
@@ -149,20 +149,20 @@ class AssigneeController extends Controller
 
         $userId = $getUser->id;
 
-        $User_info = new User_info;
-        $User_info->user_id = $userId;
-        $User_info->prefix = $prefixE;
+        $User_Info = new User_Info;
+        $User_Info->user_id = $userId;
+        $User_Info->prefix = $prefixE;
        
-        $User_info->firstname = $firstname;
-        $User_info->middlename = $middlename;
-        $User_info->lastname = $lastname;
-        $User_info->suffix = $suffixE;
-        $User_info->contact = $contact;
-        $User_info->address = $address;
+        $User_Info->firstname = $firstname;
+        $User_Info->middlename = $middlename;
+        $User_Info->lastname = $lastname;
+        $User_Info->suffix = $suffixE;
+        $User_Info->contact = $contact;
+        $User_Info->address = $address;
         
-        $User_info->role = $role;
+        $User_Info->role = $role;
 
-        $User_info->save();
+        $User_Info->save();
         
         $assignee = new Assignee;
         $assignee->user_id = $userId;
@@ -211,7 +211,7 @@ class AssigneeController extends Controller
         
         $user = User::find($id);
 
-        $User_info = User_info::where('user_id',$id)->first();
+        $User_Info = User_Info::where('user_id',$id)->first();
 
         $assignee = Assignee::where('user_id',$id)->first();
         $position =  Position::where('id',$assignee->position_id)->first();
@@ -220,14 +220,14 @@ class AssigneeController extends Controller
         return response()->json([
             "fullname"=>$user->name,
             "email"=>$user->email,
-            "firstname"=>$User_info->firstname,
-            "middlename"=>$User_info->middlename,
-            "lastname"=>$User_info->lastname,
-            "prefix"=>$User_info->prefix,
-            "suffix"=>$User_info->suffix,
-            "contact"=>$User_info->contact,
-            "address"=>$User_info->address,
-            "role"=>$User_info->role,
+            "firstname"=>$User_Info->firstname,
+            "middlename"=>$User_Info->middlename,
+            "lastname"=>$User_Info->lastname,
+            "prefix"=>$User_Info->prefix,
+            "suffix"=>$User_Info->suffix,
+            "contact"=>$User_Info->contact,
+            "address"=>$User_Info->address,
+            "role"=>$User_Info->role,
             "signature_assign"=>$assignee->signature_assign,
             "position"=>$assignee->position_id,
             "department"=>$assignee->department_id
@@ -320,19 +320,19 @@ class AssigneeController extends Controller
 
         
 
-        $User_info = User_info::where('user_id',$id)->first();
+        $User_Info = User_Info::where('user_id',$id)->first();
 
-        $User_info->prefix = $prefixE;
-        $User_info->firstname = $firstname;
-        $User_info->middlename = $middlename;
-        $User_info->lastname = $lastname;
-        $User_info->suffix = $suffixE;
-        $User_info->contact = $contact;
-        $User_info->address = $address;
+        $User_Info->prefix = $prefixE;
+        $User_Info->firstname = $firstname;
+        $User_Info->middlename = $middlename;
+        $User_Info->lastname = $lastname;
+        $User_Info->suffix = $suffixE;
+        $User_Info->contact = $contact;
+        $User_Info->address = $address;
        
-        $User_info->role = $role;
+        $User_Info->role = $role;
 
-        $User_info->update();
+        $User_Info->update();
         
         $assignee = Assignee::where('user_id',$id)->first();
         $assignee->position_id = $position;
@@ -372,9 +372,9 @@ class AssigneeController extends Controller
 
         $user->delete();
 
-        $User_info = User_info::where('user_id',$id)->first();
+        $User_Info = User_Info::where('user_id',$id)->first();
 
-        $User_info->delete();
+        $User_Info->delete();
 
         $assignee = Assignee::where('user_id',$id)->first();
 

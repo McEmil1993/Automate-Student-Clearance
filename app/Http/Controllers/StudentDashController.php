@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SignatoryAssign;
 use App\Models\Clearance_log;
 use App\Models\Assignee;
-use App\Models\User_info;
+use App\Models\User_Info;
 use DB;
 use Session;
 
@@ -124,42 +124,47 @@ class StudentDashController extends Controller
             ->where('signature_assign',$ass_id)
             ->first();
 
-            $student_exist = DB::table('students')
-            ->join('courses','courses.id','=','students.course_id')
-            ->where('courses.department_id',$ass->department_id)
-            ->exists();
+            if (isset($ass) && is_object($ass) && property_exists($ass, 'department_id')) {
+                $student_exist = DB::table('students')
+                    ->join('courses', 'courses.id', '=', 'students.course_id')
+                    ->where('courses.department_id', $ass->department_id)
+                    ->exists();
 
-            if ($student_exist) {
+                    if ($student_exist) {
 
-                 $s = DB::table('students')
-                ->join('courses','courses.id','=','students.course_id')
-                ->where('students.user_id',Auth::user()->id)
-                ->first();
+                        $s = DB::table('students')
+                       ->join('courses','courses.id','=','students.course_id')
+                       ->where('students.user_id',Auth::user()->id)
+                       ->first();
+                       
+       
+                       $student_exist1 =Assignee::join('departments','departments.id','=','assignees.department_id')
+                       ->join('users', 'users.id', '=', 'assignees.user_id')
+                       ->where('departments.id', $s->department_id)
+                       ->select('users.profile_image AS H','users.name AS fullname')
+                       ->first();
+       
+                       return $student_exist1;
+       
+                   }else{
+       
+                       $sign = Assignee::where('assignees.signature_assign',$ass_id)
+                       ->join('users', 'users.id', '=', 'assignees.user_id')
+                       ->select('users.profile_image AS H','users.name AS fullname')
+                       ->first();
+       
+                       return $sign;
+       
+                   }
                 
-
-                $student_exist1 =Assignee::join('departments','departments.id','=','assignees.department_id')
-                ->join('users', 'users.id', '=', 'assignees.user_id')
-                ->where('departments.id', $s->department_id)
-                ->select('users.profile_image AS H','users.name AS fullname')
-                ->first();
-
-                return $student_exist1;
-
-            }else{
-
-                $sign = Assignee::where('assignees.signature_assign',$ass_id)
-                ->join('users', 'users.id', '=', 'assignees.user_id')
-                ->select('users.profile_image AS H','users.name AS fullname')
-                ->first();
-
-                return $sign;
-
             }
+
+           
     }
 
     public function get_info()
     {
-         $user = User_info::where('users.id',Auth::user()->id)
+         $user = User_Info::where('users.id',Auth::user()->id)
          ->join('students','students.user_id','=','user__infos.user_id')
          ->join('users', 'users.id', '=', 'user__infos.user_id')
          ->join('courses','courses.id','=','students.course_id')

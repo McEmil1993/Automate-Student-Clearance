@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Assignee;
 use App\Models\User;
 use App\Models\Department;
-use App\Models\User_info;
+use App\Models\User_Info;
 use App\Models\Position;
 use App\Models\Prefix;
 use App\Models\Suffix;
@@ -31,10 +31,10 @@ class MyprofileController extends Controller
         $prefix =  Prefix::all();
         $suffix =  Suffix::all();
 
-        $User_info = User_info::where('user_id',$id)->first();
+        $User_Info = User_Info::where('user_id',$id)->first();
         $assignee = Assignee::where('user_id',$id)->first();
 
-        return view('pages.my_profile.index',compact('prefix','suffix','User_info','assignee'));
+        return view('pages.my_profile.index',compact('prefix','suffix','User_Info','assignee'));
     }
 
     /**
@@ -147,17 +147,17 @@ class MyprofileController extends Controller
 
 
 
-        $User_info = User_info::where('user_id',$id)->first();
+        $User_Info = User_Info::where('user_id',$id)->first();
 
-        $User_info->prefix = $prefixE;
-        $User_info->firstname = $firstname;
-        $User_info->middlename = $middlename;
-        $User_info->lastname = $lastname;
-        $User_info->suffix = $suffixE;
-        $User_info->contact = $contact;
-        $User_info->address = $address;
+        $User_Info->prefix = $prefixE;
+        $User_Info->firstname = $firstname;
+        $User_Info->middlename = $middlename;
+        $User_Info->lastname = $lastname;
+        $User_Info->suffix = $suffixE;
+        $User_Info->contact = $contact;
+        $User_Info->address = $address;
 
-        $User_info->update();
+        $User_Info->update();
         
         $assignee = Assignee::where('user_id',$id)->first();
 
