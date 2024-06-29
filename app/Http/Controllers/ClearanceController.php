@@ -8,7 +8,7 @@ use App\Models\Clearance_log;
 use App\Models\Assignee;
 use App\Models\User;
 use App\Models\Department;
-use App\Models\User_info;
+use App\Models\User_Info;
 use App\Models\Position;
 use App\Models\Prefix;
 use App\Models\Suffix;

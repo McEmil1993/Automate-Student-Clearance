@@ -89,7 +89,7 @@ Route::post('/Signatory-Assign-delete', 'App\Http\Controllers\SignatoryAssignCon
 
 Route::post('/profile/update', 'App\Http\Controllers\ProfileController@updateProfile')->name('profile.update');
 
-Route::post('/Login/login2', 'App\Http\Controllers\Auth\LoginController@login2')->name('Login.login2');
+Route::post('/login2', 'App\Http\Controllers\Auth\LoginController@login2')->name('login2');
 
 Route::post('/checkUser', 'App\Http\Controllers\Auth\LoginController@check_user')->name('Login.check_user');
 

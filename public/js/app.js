@@ -2828,7 +2828,7 @@ var SocketIoPresenceChannel = /*#__PURE__*/function (_SocketIoPrivateChann) {
     function here(callback) {
       this.on('presence:subscribed', function (members) {
         callback(members.map(function (m) {
-          return m.user_info;
+          return m.User_Info;
         }));
       });
       return this;
@@ -2841,7 +2841,7 @@ var SocketIoPresenceChannel = /*#__PURE__*/function (_SocketIoPrivateChann) {
     key: "joining",
     value: function joining(callback) {
       this.on('presence:joining', function (member) {
-        return callback(member.user_info);
+        return callback(member.User_Info);
       });
       return this;
     }
@@ -2853,7 +2853,7 @@ var SocketIoPresenceChannel = /*#__PURE__*/function (_SocketIoPrivateChann) {
     key: "leaving",
     value: function leaving(callback) {
       this.on('presence:leaving', function (member) {
-        return callback(member.user_info);
+        return callback(member.User_Info);
       });
       return this;
     }
@@ -23547,7 +23547,7 @@ var members_Members = (function () {
         if (this.get(memberData.user_id) === null) {
             this.count++;
         }
-        this.members[memberData.user_id] = memberData.user_info;
+        this.members[memberData.user_id] = memberData.User_Info;
         return this.get(memberData.user_id);
     };
     Members.prototype.removeMember = function (memberData) {
